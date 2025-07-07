@@ -1,99 +1,66 @@
-LoRa Mesh Network for Real-Time Atmospheric Monitoring
-This project demonstrates the implementation of mesh networks using LoRa (Long Range) modules integrated with microcontrollers to monitor and analyze real-time atmospheric conditions. Developed and deployed as part of an IoT-based system at RRSC-West, Jodhpur Centre, ISRO, the system enables reliable long-range, low-power communication for enhanced weather data collection and prediction.
 
-📡 Overview
-Communication Technology: LoRa (433 MHz)
+```markdown
+# 🌐 LoRa Mesh Network for Real-Time Atmospheric Monitoring
 
-Architecture: Mesh-style communication using unique device addresses
+**Implementation of Mesh Networks of Long-Range (LoRa) Modules for Real-time Monitoring of Atmospheric Conditions using Internet-of-Things (IoT) Devices**  
+📍 **ISRO RRSC-West, Jodhpur**  
+📅 **June 24, 2024**  
+🔧 **Domain**: IoT, Wireless Sensor Networks, Environmental Monitoring
 
-Microcontroller: Arduino-compatible boards
+---
 
-Use Case: Real-time sensing and transmission of climatic parameters
+## 📡 Overview
 
-Deployment Site: RRSC West, ISRO Jodhpur
+This project demonstrates the implementation of **LoRa mesh networks** integrated with **Arduino microcontrollers** for real-time, long-range, low-power monitoring of **atmospheric conditions**. The system is designed for **deployment in field environments** where internet connectivity may be limited or unavailable.
 
-🚀 Features
-Duplex LoRa communication
+---
 
-Assignable device addresses (for multi-node mesh routing)
+## 🚀 Features
 
-Periodic data broadcast (every 2–3 seconds)
+- Duplex LoRa communication with message acknowledgment
+- Node addressing for multi-node mesh scalability
+- Broadcast support for simple mesh topologies
+- Real-time diagnostics via RSSI and SNR
+- Message integrity verification
 
-Message integrity checks
+---
 
-RSSI and SNR diagnostics for quality monitoring
+## 🔧 Hardware Requirements
 
-📁 Folder Structure
-bash
-Copy
-Edit
-.
-├── lora_mesh_node.ino      # Main Arduino sketch
-├── README.md               # This file
-🧰 Hardware Requirements
-LoRa SX1278 module (433 MHz)
+- LoRa SX1278 (433 MHz) module
+- Arduino Uno/Nano/Mega (or equivalent)
+- Jumper wires / breadboard
+- Optional: Environmental sensors (e.g., DHT22, BMP180)
+- Power supply / battery pack
 
-Arduino Uno / Nano / Mega or compatible board
+---
 
-Connecting wires / breadboard
+## ⚙️ Pin Configuration
 
-Sensors (optional): DHT11/22, BMP180, etc. for atmospheric data
+| Function         | Arduino Pin |
+|------------------|-------------|
+| LoRa CS (NSS)    | D7          |
+| LoRa RESET       | D6          |
+| LoRa IRQ (DIO0)  | D1 (INT)    |
 
-Power supply or battery pack
+> **Note**: IRQ pin must be a hardware interrupt-capable pin.
 
-🔧 Pin Configuration (Example)
-Function	Arduino Pin
-LoRa CS (NSS)	D7
-LoRa RESET	D6
-LoRa IRQ (DIO0)	D1 (INT)
+---
 
-⚠️ IRQ pin must support external interrupt.
+## 💻 Code
 
-📟 Code Overview
-Initialization
-cpp
-Copy
-Edit
-LoRa.setPins(csPin, resetPin, irqPin);
-LoRa.begin(433E6);  // Set to 433 MHz
-Sending a Message
-cpp
-Copy
-Edit
-sendMessage("HeLoRa World!");
-Each message packet includes:
+The core functionality is in the `lora_mesh_node.ino` file. The device:
 
-Destination address
+- Initializes the LoRa module at 433 MHz
+- Sends a simple message every 2–3 seconds
+- Parses incoming packets
+- Verifies headers and payload integrity
+- Prints RSSI, SNR, and message metadata via Serial Monitor
 
-Sender address
+### ✉️ Example Message Output
 
-Message ID
+```
 
-Payload length
-
-Actual message
-
-Receiving a Message
-Handled using:
-
-cpp
-Copy
-Edit
-onReceive(LoRa.parsePacket());
-Performs:
-
-Header parsing
-
-Length verification
-
-Message filtering (based on address)
-
-RSSI and SNR reporting
-
-🔄 Example Serial Output
-yaml
-Copy
-Edit
 Sending HeLoRa World!
 Received from: 0xbb
 Sent to: 0xff
@@ -102,25 +69,59 @@ Message length: 13
 Message: HeLoRa World!
 RSSI: -72
 Snr: 9.5
-📡 Mesh Network Scalability
-You can deploy multiple nodes using unique localAddress values (e.g., 0xAA, 0xBB, 0xCC, ...), and configure the destination for point-to-point or broadcast (0xFF) communication.
 
-For actual mesh routing (hop-by-hop), an additional layer of routing logic can be added using message forwarding based on a routing table.
+```
 
-🧪 Future Improvements
-Integrate environmental sensors (DHT22, BMP280)
+---
 
-Add mesh routing protocols (e.g., AODV-lite for LoRa)
+## 📁 Folder Structure
 
-Store data locally using SD card
+```
 
-Push data to cloud via LoRa-to-Gateway bridge
+.
+├── lora\_mesh\_node.ino      # Main Arduino sketch
+├── README.md               # Project documentation
 
-🛰️ Developed At
-ISRO RRSC-West, Jodhpur
-Date: Jun 24, 2024
-Domain: Internet of Things (IoT), Wireless Sensor Networks, Environmental Monitoring
+```
 
-📜 License
-MIT License. Feel free to use, modify, and deploy for educational and research purposes.
+---
 
+## 🌍 Mesh Scalability
+
+To create a **multi-node network**:
+- Assign each node a unique `localAddress` (e.g., `0xAA`, `0xBB`, `0xCC`)
+- Use `0xFF` for broadcasting messages to all nodes
+- Optionally, implement routing logic for hop-based relaying
+
+> Future work includes support for routing tables and message forwarding.
+
+---
+
+## 🔮 Future Enhancements
+
+- 🌡️ Integrate real-time sensors (DHT22, BMP280)
+- 🧠 Add routing algorithms (e.g., simplified AODV)
+- 💾 Store logs on SD card
+- ☁️ Add LoRa-to-Gateway node for cloud integration
+
+---
+
+## 🛰️ Developed At
+
+**Remote Sensing Applications Centre (RRSC-West)**  
+**Indian Space Research Organisation (ISRO)**  
+Jodhpur, India
+
+---
+
+## 📜 License
+
+MIT License. Free to use, modify, and distribute for academic and research purposes.
+
+---
+
+## 🙋‍♂️ Contributors
+
+- [Your Name] – Developer  
+- ISRO RRSC-West Team – Mentors and Field Deployment  
+```
