@@ -79,7 +79,7 @@ Snr: 9.5
 ```
 
 .
-├── lora\_mesh\_node.ino      # Main Arduino sketch
+├── Main.ino                # Main Arduino sketch
 ├── README.md               # Project documentation
 
 ```
