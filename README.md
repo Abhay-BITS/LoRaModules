@@ -1,5 +1,5 @@
 
-```markdown
+
 # 🌐 LoRa Mesh Network for Real-Time Atmospheric Monitoring
 
 **Implementation of Mesh Networks of Long-Range (LoRa) Modules for Real-time Monitoring of Atmospheric Conditions using Internet-of-Things (IoT) Devices**  
@@ -122,6 +122,6 @@ MIT License. Free to use, modify, and distribute for academic and research purpo
 
 ## 🙋‍♂️ Contributors
 
-- [Your Name] – Developer  
+- Abhay & Divynash – Developer  
 - ISRO RRSC-West Team – Mentors and Field Deployment  
-```
+
