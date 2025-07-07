@@ -99,7 +99,6 @@ To create a **multi-node network**:
 
 ## 🔮 Future Enhancements
 
-- 🌡️ Integrate real-time sensors (DHT22, BMP280)
 - 🧠 Add routing algorithms (e.g., simplified AODV)
 - 💾 Store logs on SD card
 - ☁️ Add LoRa-to-Gateway node for cloud integration
